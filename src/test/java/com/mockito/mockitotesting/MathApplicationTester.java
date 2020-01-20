@@ -9,6 +9,7 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.BDDMockito.given;
 
 import com.mockito.mockitotesting.mathApp.MathApplication;
 import com.mockito.mockitotesting.mathApp.interfaces.CalculatorService;
@@ -165,4 +166,19 @@ public class MathApplicationTester {
         //test the add functionality
         Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
     }
+
+    @Test
+    //Test with given willReturn (Behavior Driven Development)
+    public void testAddWithBDD(){
+
+        //Given
+        given(calcService.add(20.0,10.0)).willReturn(30.0);
+
+        //when
+        double result = calcService.add(20.0,10.0);
+
+        //then
+        Assert.assertEquals(result,30.0,0);
+    }
+
 }
